@@ -9,13 +9,13 @@
             <header class="mb-4"><h4 class="card-title">Edit Profile</h4></header>
             <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
-                <div class="form-row">
+                {% comment %} <div class="form-row">
                     <div class="col form-group">
                         <label>User Name</label>
                         <br/>
                         {{form.username}}
                     </div>
-                </div>
+                </div> {% endcomment %}
                 <div class="form-row">
                     <div class="col form-group">
                         <label>First name</label>
@@ -38,7 +38,7 @@
                 </div>
                 
 
-                <div class="form-row">
+                {% comment %} <div class="form-row">
                     <div class="form-group col-md-6">
                         <label>Create password</label>
                         <br/>
@@ -51,7 +51,7 @@
                         {{form.password2}}
                     </div>
                     
-                </div>
+                </div> {% endcomment %}
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-block">
                         Save changes
