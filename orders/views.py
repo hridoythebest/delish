@@ -4,17 +4,17 @@ from .forms import OrderForm
 from .ssl import sslcommerz_payment_gateway
 from .models import Payment, OrderProduct, Order
 from store.models import Product
-# Create your views here.
+
 from .ssl import sslcommerz_payment_gateway
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 
-@method_decorator(csrf_exempt, name='dispatch') # csrf ke disable kore deoya
+@method_decorator(csrf_exempt, name='dispatch') 
 def success_view(request):
     data = request.POST
     print('data -------', data)
-    user_id = int(data['value_b'])  # Retrieve the stored user ID as an integer
+    user_id = int(data['value_b'])  
     user = User.objects.get(pk=user_id)
     payment = Payment(
         user = user,
@@ -25,7 +25,7 @@ def success_view(request):
     )
     payment.save()
     
-    # working with order model
+    
     order = Order.objects.get(user=user, is_ordered=False, order_number=data['value_a'])
     order.payment = payment
     order.is_ordered = True
@@ -43,12 +43,12 @@ def success_view(request):
         orderproduct.ordered = True
         orderproduct.save()
 
-        # Reduce the quantity of the sold products
         
-        product.stock -= item.quantity # order complete tai stock theke quantity komay dilam
+        
+        product.stock -= item.quantity 
         product.save()
 
-    # Clear cart
+    
     CartItem.objects.filter(user=user).delete()
     return redirect('cart')
     
@@ -64,8 +64,8 @@ def place_order(request):
     tax = 0
     total = 0
     grand_total = 0
-    # 1 --- 100
-    # 5 --- 100*5
+    
+    
     cart_items = CartItem.objects.filter(user = request.user)
     
     if cart_items.count() < 1:
@@ -74,7 +74,7 @@ def place_order(request):
     for item in cart_items:
         total += item.product.price * item.quantity
     print(cart_items)  
-    tax = (2*total)/100 # 2 % vat
+    tax = (2*total)/100 
     grand_total = total + tax
     if request.method == 'POST':
         form = OrderForm(request.POST)
@@ -84,7 +84,7 @@ def place_order(request):
             form.instance.tax = tax
             form.instance.ip = request.META.get('REMOTE_ADDR')
             form.instance.payment = 2
-            saved_instance = form.save()  # Save the form data to the database
+            saved_instance = form.save()  
             form.instance.order_number = saved_instance.id
             
             form.save()

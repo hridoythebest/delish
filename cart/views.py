@@ -12,8 +12,8 @@ def _cart_id(request):
 
 def add_to_cart(request, product_id):
     current_user = request.user
-    product = Product.objects.get(id=product_id) #get the product
-    # If the user is authenticated
+    product = Product.objects.get(id=product_id) 
+    
     if current_user.is_authenticated:
         is_cart_item_exists = CartItem.objects.filter(product=product, user=current_user).exists()
         if is_cart_item_exists:
@@ -25,7 +25,7 @@ def add_to_cart(request, product_id):
             
         else:
             try:
-                cart = Cart.objects.get(cart_id=_cart_id(request)) # get the cart using the cart_id present in the session
+                cart = Cart.objects.get(cart_id=_cart_id(request)) 
             except Cart.DoesNotExist:
                 cart = Cart.objects.create(
                     cart_id = _cart_id(request)
@@ -42,7 +42,7 @@ def add_to_cart(request, product_id):
     else:
         product = Product.objects.get(id=product_id)
         try:
-            cart = Cart.objects.get(cart_id=_cart_id(request)) # get the cart using the cart_id present in the session
+            cart = Cart.objects.get(cart_id=_cart_id(request)) 
         except Cart.DoesNotExist:
             cart = Cart.objects.create(
                 cart_id = _cart_id(request)
@@ -108,7 +108,7 @@ def cart(request, total=0, quantity=0, cart_items=None):
         tax = (2 * total)/100
         grand_total = total + tax
     except ObjectDoesNotExist:
-        pass #just ignore
+        pass 
 
     context = {
         'total': total,

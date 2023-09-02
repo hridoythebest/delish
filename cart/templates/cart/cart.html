@@ -3,7 +3,7 @@
 {% block body%}
 <section class="section-content padding-y bg">
       <div class="container">
-        <!-- ============================ COMPONENT 1 ================================= -->
+        
 
         <div class="row">
           <aside class="col-lg-9">
@@ -37,7 +37,7 @@
                       </figure>
                     </td>
                     <td>
-                      <!-- col.// -->
+                      
                       <div class="col">
                         <div class="input-group input-spinner">
                           <div class="input-group-prepend">
@@ -69,16 +69,16 @@
                             </form>
                           </div>
                         </div>
-                        <!-- input-group.// -->
+                        
                       </div>
-                      <!-- col.// -->
+                      
                     </td>
                     <td>
                       <div class="price-wrap">
                         <var class="price">${{item.sub_total}}</var>
                         <small class="text-muted"> ${{item.product.price}} each </small>
                       </div>
-                      <!-- price-wrap .// -->
+                      
                     </td>
                     <td class="text-right">
                       <a href="{% url 'remove_cart' item.product.id %}" class="btn btn-danger"> Remove</a>
@@ -90,9 +90,9 @@
                 </tbody>
               </table>
             </div>
-            <!-- card.// -->
+            
           </aside>
-          <!-- col.// -->
+          
           <aside class="col-lg-3">
             <div class="card">
               <div class="card-body">
@@ -121,15 +121,15 @@
                   >Continue Shopping</a
                 >
               </div>
-              <!-- card-body.// -->
+              
             </div>
-            <!-- card.// -->
+            
           </aside>
-          <!-- col.// -->
+          
         </div>
-        <!-- row.// -->
-        <!-- ============================ COMPONENT 1 END .// ================================= -->
+        
+        
       </div>
-      <!-- container .//  -->
+      
     </section>
 {% endblock%}

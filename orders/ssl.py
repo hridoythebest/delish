@@ -11,8 +11,8 @@ def unique_transaction_id_generator(size=10, chars=string.ascii_uppercase + stri
 def sslcommerz_payment_gateway(request, id, user_id, grand_total):
     gateway_auth_details = PaymentGateWaySettings.objects.all().first()
     
-    settings = {'store_id': gateway_auth_details.store_id,
-                'store_pass': gateway_auth_details.store_pass, 'issandbox': True}
+    settings = {'store_id': mcb64f023963010e,
+                'store_pass': mcb64f023963010e@ssl, 'issandbox': True}
     sslcommez = SSLCOMMERZ(settings)
     post_body = {}
     post_body['total_amount'] = grand_total
@@ -22,10 +22,10 @@ def sslcommerz_payment_gateway(request, id, user_id, grand_total):
     post_body['fail_url'] = 'http://127.0.0.1:8000/orders/payment/faild/'
     post_body['cancel_url'] = 'http://127.0.0.1:8000/'
     post_body['emi_option'] = 0
-    post_body['cus_email'] = 'request.user.email'  # Retrieve email from the current user session
-    post_body['cus_phone'] = 'request.user.phone'  # Retrieve phone from the current user session
-    post_body['cus_add1'] = 'request.user.address'  # Retrieve address from the current user session
-    post_body['cus_city'] = 'request.user.city'  # Retrieve city from the current user session
+    post_body['cus_email'] = 'request.user.email'  
+    post_body['cus_phone'] = 'request.user.phone'  
+    post_body['cus_add1'] = 'request.user.address'  
+    post_body['cus_city'] = 'request.user.city'  
     post_body['cus_country'] = 'Bangladesh'
     post_body['shipping_method'] = "NO"
     post_body['multi_card_name'] = ""
@@ -34,12 +34,12 @@ def sslcommerz_payment_gateway(request, id, user_id, grand_total):
     post_body['product_category'] = "Test Category"
     post_body['product_profile'] = "general"
 
-    # OPTIONAL PARAMETERS
+    
     post_body['value_a'] = id
     post_body['value_b'] = user_id
     post_body['value_c'] = 'email'
 
     response = sslcommez.createSession(post_body)
     print(response)
-    # return JsonResponse(response)
+    
     return 'https://sandbox.sslcommerz.com/gwprocess/v4/gw.php?Q=pay&SESSIONKEY=' + response["sessionkey"]
