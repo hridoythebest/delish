@@ -29,7 +29,7 @@ def user_login(request):
         password = request.POST.get('password')
         user = authenticate(username = user_name, password = password)
         print(user)
-        # ekhono login hoy nai
+        
         session_key = get_create_session(request)
         cart = Cart.objects.get(cart_id = session_key)
         is_cart_item_exists = CartItem.objects.filter(cart = cart).exists()
@@ -40,7 +40,7 @@ def user_login(request):
                 item.save()
         login(request, user)
         
-        # login hoye geche
+        
         
         return redirect('profile')
     return render(request, 'accounts/signin.html')

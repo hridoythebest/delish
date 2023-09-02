@@ -4,11 +4,11 @@
 <section class="section-pagetop bg">
     <div class="container">
         <h2 class="title-page">Our Store</h2>
-    </div> <!-- container //  -->
+    </div> 
 </section>
-<!-- ========================= SECTION INTRO END// ========================= -->
 
-<!-- ========================= SECTION CONTENT ========================= -->
+
+
 <section class="section-content padding-y">
     <div class="container">
 
@@ -19,7 +19,7 @@
                     <div class="form-inline">
                         <span class="mr-md-auto">{{products|length}} Items found </span>
                     </div>
-                </header><!-- sect-heading -->
+                </header>
 
                 <div class="row">
                     {% for item in products %}
@@ -27,21 +27,21 @@
                         <figure class="card card-product-grid">
                             <div class="img-wrap">
                                 <a href="{% url 'product_detail' item.category.slug item.slug   %}"><img src="{{item.image.url}}"></a>
-                            </div> <!-- img-wrap.// -->
+                            </div> 
                             <figcaption class="info-wrap">
                                 <div class="fix-height">
                                     <a href="{% url 'product_detail' item.category.slug item.slug   %}" class="title">{{item.product_name}}</a>
                                     <div class="price-wrap mt-2">
                                         <span class="price">${{item.price}}</span>
-                                    </div> <!-- price-wrap.// -->
+                                    </div> 
                                     
                                 </div>
                                 <a href="{% url 'product_detail' item.category.slug item.slug   %}" class="btn btn-block btn-primary">Added to cart </a>
                             </figcaption>
                         </figure>
-                    </div> <!-- col.// -->
+                    </div> 
                     {% endfor %}
-                </div> <!-- row end.// -->
+                </div> 
 
                 <nav class="mt-4" aria-label="Page navigation sample">
                     <ul class="pagination">
@@ -60,7 +60,7 @@
                         {% endif %}
                     </ul>
                 </nav>
-            </main> <!-- col.// -->
+            </main> 
             <aside class="col-md-3">
                 <div class="card">
                     <article class="filter-group">
@@ -77,12 +77,12 @@
                         <li><a href="{% url 'products_by_category' category_slug=i.slug %}">{{i.category_name}} </a></li>
                                     {% endfor %}
                                 </ul>
-                            </div> <!-- card-body.// -->
+                            </div> 
                         </div>
-                    </article> <!-- filter-group  .// -->
-                </div> <!-- card.// -->
-            </aside> <!-- col.// -->
+                    </article> 
+                </div> 
+            </aside> 
         </div>
-    </div> <!-- container .//  -->
+    </div> 
 </section>
 {% endblock %}
