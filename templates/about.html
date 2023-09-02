@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+
+<!-- About Section -->
+<section class="about">
+    <div class="container">
+        <div class="section-heading">
+            <h2 class="section-title">About Delish</h2>
+            <p class="section-description">Discover our story and mission.</p>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="about-content">
+                    <h3>Our Story</h3>
+                    <p>Welcome to Delish, your go-to destination for culinary delights! We are passionate about all things food and are on a mission to share our love for exceptional flavors and unforgettable dining experiences.
+
+                        At Delish, we believe that food isn't just sustenance; it's an art form, a cultural expression, and a source of joy. Our journey began with a simple idea: to create a platform where food enthusiasts can discover new tastes, connect with talented chefs, and embark on gastronomic adventures.
+                        
+                        Our team is composed of dedicated foodies, chefs, and storytellers who are committed to curating the finest recipes, restaurant recommendations, and culinary insights. Whether you're a seasoned chef or an amateur cook, a foodie on the hunt for hidden gems, or someone looking to explore the world of flavors, Delish is your culinary companion.
+                        
+                        Join us on this delectable journey as we explore the diverse world of cuisine, share mouthwatering recipes, and celebrate the magic that happens when food brings people together. Delight in the flavors, savor the moments, and let your taste buds dance with Delish!</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="about-image">
+                    <img class="img-thumbnail"  src="{% static 'images/items/chicken.jpg' %}" alt="About Delish">
+                </div>
+            </div>
+        </div>
+        <!-- Additional Features -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="about-content">
+                    <h3>Our Mission</h3>
+                    <p>We are on a mission to revolutionize the way people experience food. Delish is dedicated to bringing you the most delightful culinary experiences from around the world.</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="about-image">
+                    {% comment %} <img src="{% static 'images/avatars/avatar2.jpg' %}" alt="Our Chef"> {% endcomment %}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="about-content">
+                    <h3>Our Team</h3>
+                    <p>Meet our passionate team of food enthusiasts and tech experts who work tirelessly to bring you the best dishes and dining experiences right at your fingertips.</p>
+                    <img src="{% static 'images/avatars/avatar3.jpg' %}" alt="Our Team">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="about-image">
+                    <img src="{% static 'images/avatars/avatar2.jpg' %}" alt="Our Team">
+                    <img src="{% static 'images/avatars/avatar1.jpg' %}" alt="Our Team">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

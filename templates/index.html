@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+
+<section class="section-intro padding-y-sm">
+	
+<div class="container">
+
+	<div class="row">
+		
+		{% for i in categories %}
+		<div class="col-md-4">
+			<div class="card card-product-grid">
+				<a href="{% url 'products_by_category' category_slug=i.slug %}" class="img-wrap">
+					<img src="{{ i.cat_image.url }}">
+				</a>
+				<figcaption class="info-wrap">
+					<a href="{% url 'products_by_category' category_slug=i.slug %}" class="title btn btn-outline btn-success">{{ i.category_name }}</a>
+					<!-- price-wrap.// -->
+				</figcaption>
+			</div>
+		</div> <!-- col.// -->
+		
+		{% endfor %}
+		<div class="col-md-4">
+			<div class="card card-product-grid">
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<a href="{% url 'store' %}"class="btn btn-outline-primary float-right">See all</a>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				
+			</div>
+		</div> <!-- col.// -->
+	</div>
+</section>
+
+
+{% endblock %}
