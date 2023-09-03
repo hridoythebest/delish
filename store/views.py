@@ -55,3 +55,17 @@ def submit_review(request, product_id):
                 data.user = request.user
                 data.save()
                 return redirect(url)
+            
+def search(request):
+    query = request.GET.get('q')
+    if query:
+        products = Product.objects.filter(product_name__icontains=query, is_available=True)
+    else:
+        products = Product.objects.filter(is_available=True)
+    paginator = Paginator(products, 9)
+    page = request.GET.get('page')
+    paged_products = paginator.get_page(page)
+    categories = Category.objects.all()
+    context = {'products': paged_products, 'categories': categories}
+    return render(request, 'store/store.html', context)
+

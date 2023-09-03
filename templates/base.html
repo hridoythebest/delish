@@ -66,13 +66,15 @@
             </li>
           </ul>
           <div class=" col-lg col-md-6 col-sm-12 col w-80">
-            <form action="#" class="search">
+            <form method="get" action="{% url 'search' %}" class="navbar-form navbar-left" class="search">
+              {% csrf_token %}
               <div class="input-group w-100">
                 <input
                   type="text"
                   class="form-control"
                   style="width: 60%"
-                  placeholder="Search"
+                  placeholder="Search your favorite Food Here"
+                  name="q"
                 />
   
                 <div class="input-group-append">
