@@ -27,23 +27,27 @@ def user_login(request):
     if request.method == 'POST':
         user_name = request.POST.get('username')
         password = request.POST.get('password')
-        user = authenticate(username = user_name, password = password)
-        print(user)
+        user = authenticate(username=user_name, password=password)
         
-        session_key = get_create_session(request)
-        cart = Cart.objects.get(cart_id = session_key)
-        is_cart_item_exists = CartItem.objects.filter(cart = cart).exists()
-        if is_cart_item_exists:
-            cart_item = CartItem.objects.filter(cart = cart)
-            for item in cart_item:
+        if user is not None:
+            login(request, user)
+            session_key = get_create_session(request)
+
+            try:
+                cart = Cart.objects.get(cart_id=session_key)
+            except Cart.DoesNotExist:
+                cart = Cart.objects.create(cart_id=session_key)
+
+            cart_items = CartItem.objects.filter(cart=cart)
+            for item in cart_items:
                 item.user = user
                 item.save()
-        login(request, user)
-        
-        
-        
-        return redirect('profile')
+
+            return redirect('profile')
+    
     return render(request, 'accounts/signin.html')
+
+
 @login_required
 def edit_profile(request):
     if request.method == 'POST':
