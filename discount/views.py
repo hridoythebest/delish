@@ -5,6 +5,8 @@ from store.models import Product
 
 def discounted_items(request):
     discounted_items = DiscountedItem.objects.all()
+    for item in discounted_items:
+         item.discounted_price = item.product.price - (item.product.price * item.discount_percentage/100)
     return render(request, 'discount/discounted_items.html', {'discounted_items': discounted_items})
 
 # def discounted_items(request):

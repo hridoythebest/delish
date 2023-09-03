@@ -2,7 +2,9 @@
 
 {% block body %}
 <div class="container">
-    <h1 class="text-center mb-4">Discounted Items</h1>
+    <hr>
+    <h1 class="text-center mb-4"><u>*****Discounted Items*****</u></h1>
+    <hr>
     <div class="row">
         {% for item in discounted_items %}
         <div class="col-md-4 mb-4">
@@ -13,7 +15,7 @@
                     <h5 class="card-title">{{ item.product.title }}</h5>
                     <p class="card-text">{{ item.product.description|truncatechars:100 }}</p>
                     <div class="d-flex justify-content-between">
-                        <p class="card-text"><del>Original Price: ${{ item.product.price }}</del></p>
+                        <p class="card-text text-danger"><del>Original Price: ${{ item.product.price }}</del></p>
                         <p class="card-text text-success">Offer Price: ${{ item.discounted_price|floatformat:"2" }}</p>
                     </div>
                     <a href="#" class="btn btn-primary btn-block mt-3">Add to Cart</a>
