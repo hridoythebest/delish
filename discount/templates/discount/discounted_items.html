@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+    <h1 class="text-center mb-4">Discounted Items</h1>
+    <div class="row">
+        {% for item in discounted_items %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 position-relative">
+                <img src="{{ item.product.image.url }}" class="card-img-top" alt="{{ item.title }}">
+                <span class="badge badge-danger discount-badge position-absolute top-0 start-100 translate-middle" style="font-size: 14px;">-{{ item.discount_percentage }}%</span>
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.product.title }}</h5>
+                    <p class="card-text">{{ item.product.description|truncatechars:100 }}</p>
+                    <div class="d-flex justify-content-between">
+                        <p class="card-text"><del>Original Price: ${{ item.product.price }}</del></p>
+                        <p class="card-text text-success">Offer Price: ${{ item.discounted_price|floatformat:"2" }}</p>
+                    </div>
+                    <a href="#" class="btn btn-primary btn-block mt-3">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
